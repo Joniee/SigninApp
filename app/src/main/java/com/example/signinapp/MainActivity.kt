@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.signinapp.api.RetrofitClient // Asegúrate de importar tu RetrofitClient
 import com.example.signinapp.models.LoginRequest
+import com.example.signinapp.models.SessionManager
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -42,12 +43,12 @@ class MainActivity : AppCompatActivity() {
                     if (response.isSuccessful && response.body() != null) {
                         val usuario = response.body()!!
 
+                        SessionManager.currentUser = usuario
+
                         // Si todo va bien, saltamos al Dashboard
                         Toast.makeText(this@MainActivity, "Hola ${usuario.name}", Toast.LENGTH_LONG).show()
 
                         val intent = Intent(this@MainActivity, DashboardActivity::class.java)
-                        intent.putExtra("USER_ID", usuario.id)
-                        intent.putExtra("USER_NAME", usuario.name)
                         startActivity(intent)
                         finish() // Cierra la pantalla de login para no volver atrás
 

@@ -16,7 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SigninApp">
         <activity
+            android:name=".StoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".DashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

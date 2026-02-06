@@ -1,10 +1,12 @@
 package com.example.signinapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.signinapp.models.SessionManager
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -13,6 +15,8 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dashboard)
 
         val tvWelcome = findViewById<TextView>(R.id.tvWelcome)
+        val btnPerfil = findViewById<Button>(R.id.btnPerfil)
+        val btnLogout = findViewById<Button>(R.id.btnLogout)
         val btnFichar = findViewById<Button>(R.id.btnFichar)
         val tvStatus = findViewById<TextView>(R.id.tvStatus)
 
@@ -21,6 +25,18 @@ class DashboardActivity : AppCompatActivity() {
         val userName = intent.getStringExtra("USER_NAME") ?: "Usuario"
 
         tvWelcome.text = "Hola, $userName"
+
+        btnPerfil.setOnClickListener {
+            // Ir al perfil
+            val intent = Intent(this@DashboardActivity, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnLogout.setOnClickListener {
+            val intent = Intent(this@DashboardActivity, MainActivity::class.java)
+            SessionManager.logout()
+            startActivity(intent)
+        }
 
         btnFichar.setOnClickListener {
             // AQUÍ PONDREMOS EL CÓDIGO DEL GPS Y LA API DE FICHAJE
