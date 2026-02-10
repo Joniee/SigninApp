@@ -15,6 +15,7 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dashboard)
 
         val tvWelcome = findViewById<TextView>(R.id.tvWelcome)
+        val btnHistory = findViewById<Button>(R.id.btnHistory)
         val btnPerfil = findViewById<Button>(R.id.btnPerfil)
         val btnLogout = findViewById<Button>(R.id.btnLogout)
         val btnFichar = findViewById<Button>(R.id.btnFichar)
@@ -25,6 +26,12 @@ class DashboardActivity : AppCompatActivity() {
         val userName = intent.getStringExtra("USER_NAME") ?: "Usuario"
 
         tvWelcome.text = "Hola, $userName"
+
+        btnHistory.setOnClickListener {
+            // Ir al perfil
+            val intent = Intent(this@DashboardActivity, HistoryActivity::class.java)
+            startActivity(intent)
+        }
 
         btnPerfil.setOnClickListener {
             // Ir al perfil

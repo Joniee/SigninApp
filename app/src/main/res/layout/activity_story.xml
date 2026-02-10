@@ -6,6 +6,75 @@
     android:padding="24dp"
     android:gravity="center_horizontal">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:background="#1A31BC"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Fichaje FJSAT"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_marginTop="5dp"
+            />
+
+        <Button
+            android:id="@+id/btnHistory"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#1A31BC"
+            android:drawableTop="@drawable/baseline_auto_stories_24"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/white"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnPerfil"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#1A31BC"
+            android:drawableTop="@drawable/user_icon"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/white"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="#1A31BC"
+            android:drawableTop="@drawable/logout"
+            android:drawableTint="@color/white"
+            android:drawablePadding="8sp"
+            android:textSize="12sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#FFFFFF"
+            android:drawableTop="@drawable/back"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/black"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
     <TextView
         android:text="Historial del Trabajador"
         android:textSize="26sp"
@@ -37,34 +106,31 @@
         android:background="#CCCCCC"
         android:layout_marginBottom="30dp"/>
 
-    <DatePicker
-        android:layout_width="171dp"
-        android:layout_height="172dp"
-        android:layout_marginBottom="10dp"
-        android:text="HORARIO ASIGNADO"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvHorario"
-        android:text="--:-- a --:--"
-        android:textSize="20sp"
-        android:layout_marginBottom="10dp"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="184dp">
 
-    <TextView
-        android:id="@+id/tvDias"
-        android:text="Días: ---"
-        android:textSize="16sp"
-        android:layout_marginBottom="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <DatePicker
+            android:layout_width="171dp"
+            android:layout_height="172dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="10dp"
+            android:text="HORARIO ASIGNADO"
+            android:textStyle="bold" />
+
+        <DatePicker
+            android:layout_width="171dp"
+            android:layout_height="172dp"
+            android:layout_marginBottom="10dp"
+            android:text="HORARIO ASIGNADO"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <Button
-        android:id="@+id/btnVolver"
+        android:id="@+id/btnBuscar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="Volver al Panel"
+        android:text="Buscar"
         android:backgroundTint="#673AB7"/>
 
 </LinearLayout>
