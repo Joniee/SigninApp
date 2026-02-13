@@ -14,9 +14,9 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_profile)
 
         // Referencias
-        val tvNombre = findViewById<TextView>(R.id.tvNombreProfile)
+        val tvName = findViewById<TextView>(R.id.tvNameProfile)
         val tvId = findViewById<TextView>(R.id.tvIdProfile)
-        val tvHorario = findViewById<TextView>(R.id.tvHorario)
+        val tvSchedule = findViewById<TextView>(R.id.tvSchedule)
         val btnBack = findViewById<Button>(R.id.btnBack)
         val btnHistory = findViewById<Button>(R.id.btnHistory)
         val btnPerfil = findViewById<Button>(R.id.btnPerfil)
@@ -50,12 +50,12 @@ class ProfileActivity : AppCompatActivity() {
         val usuario = SessionManager.currentUser
 
         if (usuario != null) {
-            tvNombre.text = usuario.name
+            tvName.text = usuario.name
             tvId.text = "ID: ${usuario.id}"
 
             val entrada = usuario.scheduleIn ?: "??"
             val salida = usuario.scheduleOut ?: "??"
-            tvHorario.text = "$entrada - $salida"
+            tvSchedule.text = "$entrada - $salida"
 
             tvDias.text = "Días: ${usuario.workDays ?: "No definidos"}"
         }

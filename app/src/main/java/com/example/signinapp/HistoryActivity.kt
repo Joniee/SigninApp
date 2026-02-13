@@ -5,26 +5,45 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.core.util.Pair
-import com.example.signinapp.models.SessionManager
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.signinapp.models.*
+import com.example.signinapp.api.RetrofitClient
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import java.util.TimeZone
+import java.util.*
+
 
 
 class HistoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_story)
+        setContentView(R.layout.activity_history)
 
         val btnBack = findViewById<Button>(R.id.btnBack)
         val btnHistory = findViewById<Button>(R.id.btnHistory)
         val btnPerfil = findViewById<Button>(R.id.btnPerfil)
         val btnLogout = findViewById<Button>(R.id.btnLogout)
+
+        val rvHistory = findViewById<RecyclerView>(R.id.rvHistory)
+
+        val tvName = findViewById<TextView>(R.id.tvNameProfile)
+        val tvId = findViewById<TextView>(R.id.tvIdProfile)
+
+        val user = SessionManager.currentUser
+
+        if(user != null) {
+            tvName.text = user.name
+            tvId.text = "ID: ${user.id}"
+        }
+
 
 
         btnHistory.setOnClickListener {
@@ -88,7 +107,15 @@ class HistoryActivity : AppCompatActivity() {
         }
 
         btnBuscar.setOnClickListener {
-            // Tu lógica para llamar a la API usando etFrom.text y etTo.text
+            val startDateStr = etFrom.text.toString()
+            val endDateStr = etTo.text.toString()
+
+            if (startDateStr.isEmpty() || endDateStr.isEmpty()) {
+                Toast.makeText(this, "Select dates first", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            performSearch(startDateStr, endDateStr, rvHistory, btnBuscar)
         }
 
         btnBack.setOnClickListener { finish() }
@@ -100,6 +127,61 @@ class HistoryActivity : AppCompatActivity() {
         val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         formatter.timeZone = TimeZone.getTimeZone("UTC")
         return formatter.format(Date(timestamp))
+    }
+
+    private fun performSearch(startDate: String, endDate: String, recyclerView: RecyclerView, button: Button) {
+        val user = SessionManager.currentUser ?: return
+
+        lifecycleScope.launch {
+            try {
+                button.isEnabled = false
+                button.text = "Loading..."
+
+                // Convert UI format (dd/MM/yyyy) to API format (yyyy-MM-dd)
+                val apiStartDate = convertToIsoDate(startDate)
+                val apiEndDate = convertToIsoDate(endDate)
+
+                val request = HistoryRequest(user.id, apiStartDate, apiEndDate)
+                val response = RetrofitClient.apiService.getHistory(request)
+                val adapter = HistoryAdapter()
+
+                if (response.isSuccessful && response.body() != null) {
+                    val rawLogs = response.body()?.results!!
+                    // Process data
+                    val reports = adapter.updateData(rawLogs)
+
+                    recyclerView.layoutManager = LinearLayoutManager(this@HistoryActivity)
+                    recyclerView.adapter = adapter
+                    // Update UI
+                    //recyclerView.adapter = HistoryAdapter(reports)
+
+                    //if (reports.isEmpty()) {
+                    //    Toast.makeText(this@HistoryActivity, "No records found", Toast.LENGTH_SHORT).show()
+                    //}
+                } else {
+                    Toast.makeText(this@HistoryActivity, "Server error", Toast.LENGTH_SHORT).show()
+                }
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(this@HistoryActivity, "Connection error", Toast.LENGTH_SHORT).show()
+            } finally {
+                button.isEnabled = true
+                button.text = "SEARCH"
+            }
+        }
+    }
+
+    // Helper: Converts UI string (dd/MM/yyyy) to API string (yyyy-MM-dd)
+    private fun convertToIsoDate(uiDate: String): String {
+        return try {
+            val inputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val date = inputFormat.parse(uiDate)
+            outputFormat.format(date!!)
+        } catch (e: Exception) {
+            uiDate // Fallback
+        }
     }
 
 }
