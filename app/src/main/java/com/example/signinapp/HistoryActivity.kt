@@ -135,7 +135,7 @@ class HistoryActivity : AppCompatActivity() {
         lifecycleScope.launch {
             try {
                 button.isEnabled = false
-                button.text = "Loading..."
+                button.text = "Buscando..."
 
                 // Convert UI format (dd/MM/yyyy) to API format (yyyy-MM-dd)
                 val apiStartDate = convertToIsoDate(startDate)
@@ -147,17 +147,15 @@ class HistoryActivity : AppCompatActivity() {
 
                 if (response.isSuccessful && response.body() != null) {
                     val rawLogs = response.body()?.results!!
-                    // Process data
+
                     val reports = adapter.updateData(rawLogs)
 
                     recyclerView.layoutManager = LinearLayoutManager(this@HistoryActivity)
                     recyclerView.adapter = adapter
-                    // Update UI
-                    //recyclerView.adapter = HistoryAdapter(reports)
 
-                    //if (reports.isEmpty()) {
-                    //    Toast.makeText(this@HistoryActivity, "No records found", Toast.LENGTH_SHORT).show()
-                    //}
+
+                } else if(response.code() == 404){
+                    Toast.makeText(this@HistoryActivity, "No hay actividad en este rango", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@HistoryActivity, "Server error", Toast.LENGTH_SHORT).show()
                 }
@@ -167,7 +165,7 @@ class HistoryActivity : AppCompatActivity() {
                 Toast.makeText(this@HistoryActivity, "Connection error", Toast.LENGTH_SHORT).show()
             } finally {
                 button.isEnabled = true
-                button.text = "SEARCH"
+                button.text = "Buscar"
             }
         }
     }

@@ -17,45 +17,49 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="Fichaje FJSAT"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_marginTop="5dp"
+            android:gravity="center"
             />
 
         <Button
             android:id="@+id/btnHistory"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:backgroundTint="#1A31BC"
             android:drawableTop="@drawable/baseline_auto_stories_24"
-            android:drawablePadding="8dp"
+            android:drawablePadding="10dp"
             android:drawableTint="@color/white"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:textAlignment="center"
+            android:gravity="center"/>
 
         <Button
             android:id="@+id/btnPerfil"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:backgroundTint="#1A31BC"
             android:drawableTop="@drawable/user_icon"
-            android:drawablePadding="8dp"
+            android:drawablePadding="10dp"
             android:drawableTint="@color/white"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:textAlignment="center"
+            android:gravity="center"/>
 
         <Button
             android:id="@+id/btnLogout"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:backgroundTint="#1A31BC"
             android:drawableTop="@drawable/logout"
             android:drawableTint="@color/white"
-            android:drawablePadding="8sp"
-            android:textSize="12sp" />
+            android:drawablePadding="10sp"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
@@ -73,6 +77,23 @@
             android:textSize="22sp"
             android:layout_marginBottom="40dp"/>
 
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cargando estado actual..."
+            android:textSize="18sp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextClock
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:format12Hour="hh:mm:ss"
+            android:format24Hour="HH:mm:ss"
+            android:textSize="18sp"
+            android:layout_marginBottom="20dp"/>
+
         <Button
             android:id="@+id/btnFichar"
             android:layout_width="match_parent"
@@ -81,11 +102,5 @@
             android:textSize="18sp"
             android:backgroundTint="#4CAF50"/>
 
-        <TextView
-            android:id="@+id/tvStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Esperando acción..."
-            android:layout_marginTop="24dp"/>
     </LinearLayout>
 </LinearLayout>

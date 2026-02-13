@@ -13,50 +13,54 @@
         android:orientation="horizontal"
         android:background="#1A31BC"
         android:layout_marginTop="20dp">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="Fichaje FJSAT"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_marginTop="5dp"
+            android:gravity="center"
             />
 
         <Button
             android:id="@+id/btnHistory"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:backgroundTint="#1A31BC"
             android:drawableTop="@drawable/baseline_auto_stories_24"
-            android:drawablePadding="8dp"
+            android:drawablePadding="10dp"
             android:drawableTint="@color/white"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:textAlignment="center"
+            android:gravity="center"/>
 
         <Button
             android:id="@+id/btnPerfil"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:backgroundTint="#1A31BC"
             android:drawableTop="@drawable/user_icon"
-            android:drawablePadding="8dp"
+            android:drawablePadding="10dp"
             android:drawableTint="@color/white"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:textAlignment="center"
+            android:gravity="center"/>
 
         <Button
             android:id="@+id/btnLogout"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:backgroundTint="#1A31BC"
             android:drawableTop="@drawable/logout"
             android:drawableTint="@color/white"
-            android:drawablePadding="8sp"
-            android:textSize="12sp" />
+            android:drawablePadding="10sp"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:gravity="center"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
