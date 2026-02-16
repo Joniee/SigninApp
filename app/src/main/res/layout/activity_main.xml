@@ -25,8 +25,9 @@
         android:id="@+id/etId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ID de Usuario (ej: 1)"
-        android:inputType="number" />
+        android:hint="ID de Usuario"
+        android:inputType="number"
+        android:textAlignment="center"/>
 
     <EditText
         android:id="@+id/etPassword"
@@ -34,13 +35,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="Contraseña"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#4C58AF"
         android:text="Entrar" />
 
 </LinearLayout>

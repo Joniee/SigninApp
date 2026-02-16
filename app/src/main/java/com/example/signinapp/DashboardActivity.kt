@@ -10,13 +10,17 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.signinapp.api.RetrofitClient
+import com.example.signinapp.models.CheckInRequest
 import com.example.signinapp.models.HistoryRequest
 import com.example.signinapp.models.SessionManager
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 
 
 class DashboardActivity : AppCompatActivity() {
+
+    private var type: String = "Entrada"
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,16 +60,53 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btnFichar.setOnClickListener {
-            // AQUÍ PONDREMOS EL CÓDIGO DEL GPS Y LA API DE FICHAJE
-            // Por ahora probamos que el botón funcione
-            tvStatus.text = "Procesando fichaje..."
+        getStatus()
 
-            // Cuando me digas que el login funciona, pegamos aquí el código de fichaje real.
+        btnFichar.setOnClickListener {
+
+            tvStatus.text = "Procesando fichaje..."
+            btnFichar.isEnabled = false
+            btnFichar.alpha = 0.5f
+
+            if(type == "Entrada" || type == "Salida"){
+                createAccess()
+            }
         }
 
-        getStatus()
+
         Toast.makeText(this, "Cargando datos", Toast.LENGTH_SHORT).show()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createAccess(){
+        lifecycleScope.launch{
+            try{
+
+                val btnFichar = findViewById<Button>(R.id.btnFichar)
+                val user = SessionManager.currentUser
+                val request = CheckInRequest(
+                    workerId = user!!.id,
+                    type = type,
+                    location = "0.0 0.0"
+                )
+
+                val response = RetrofitClient.apiService.checkIn(request)
+                if(response.isSuccessful){
+                    Toast.makeText(this@DashboardActivity, "Fichaje $type realizada con éxito", Toast.LENGTH_SHORT).show()
+                    delay(timeMillis = 1000)
+                    getStatus()
+                    btnFichar.isEnabled = true
+                    btnFichar.alpha = 1.0f
+                } else {
+                    val errorMsg = response.errorBody()?.string() ?: "Error desconocido"
+                    Toast.makeText(this@DashboardActivity, "Error al fichar, vuelve a iniciar sessión", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            } catch (e:Exception) {
+                Toast.makeText(this@DashboardActivity, "Fallo de red: ${e.message}", Toast.LENGTH_LONG).show()
+
+            }
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -86,13 +127,16 @@ class DashboardActivity : AppCompatActivity() {
                     if (lastLog != null && lastLog.type == "Entrada") {
                         tvStatus.text = "Estado: Trabajando desde ${lastLog.time}"
                         btnFichar.text = "Registrar salida"
+                        type = "Salida"
                     } else {
                         tvStatus.text = "Estado: Actividad finalizada"
                         btnFichar.text = "Registrar entrada"
+                        type = "Entrada"
                     }
                 } else if(response.code() == 404){
                     tvStatus.text = "Estado: Sin actividad"
                     btnFichar.text = "Registrar entrada"
+                    type = "Entrada"
                 } else {
                     btnFichar.isEnabled = false
                     btnFichar.text = "Contactar con administrador"

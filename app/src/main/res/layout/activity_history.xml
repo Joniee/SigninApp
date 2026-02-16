@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +13,7 @@
         android:layout_gravity="top"
         android:gravity="right"
         android:orientation="horizontal"
-        android:background="#1A31BC"
+        android:background="#4C58AF"
         android:layout_marginTop="20dp">
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +30,7 @@
             android:id="@+id/btnHistory"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:backgroundTint="#1A31BC"
+            android:backgroundTint="#4C58AF"
             android:drawableTop="@drawable/baseline_auto_stories_24"
             android:drawablePadding="10dp"
             android:drawableTint="@color/white"
@@ -41,7 +42,7 @@
             android:id="@+id/btnPerfil"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:backgroundTint="#1A31BC"
+            android:backgroundTint="#4C58AF"
             android:drawableTop="@drawable/user_icon"
             android:drawablePadding="10dp"
             android:drawableTint="@color/white"
@@ -53,7 +54,7 @@
             android:id="@+id/btnLogout"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:backgroundTint="#1A31BC"
+            android:backgroundTint="#4C58AF"
             android:drawableTop="@drawable/logout"
             android:drawableTint="@color/white"
             android:drawablePadding="10sp"
@@ -154,13 +155,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
-
     <Button
         android:id="@+id/btnBuscarHistory"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:text="Buscar"
-        android:backgroundTint="#673AB7"/>
+        android:backgroundTint="#4C58AF"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHistory"

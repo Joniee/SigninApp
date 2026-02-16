@@ -11,4 +11,7 @@ interface ApiService {
 
     @POST("access/query")
     suspend fun getHistory(@Body request: HistoryRequest): Response<HistoryResponse>
+
+    @POST("access/create")
+    suspend fun checkIn(@Body request: CheckInRequest): Response<Void>
 }

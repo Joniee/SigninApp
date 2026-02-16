@@ -12,7 +12,7 @@
         android:layout_gravity="top"
         android:gravity="right"
         android:orientation="horizontal"
-        android:background="#1A31BC"
+        android:background="#4C58AF"
         android:layout_marginTop="20dp">
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
             android:id="@+id/btnHistory"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:backgroundTint="#1A31BC"
+            android:backgroundTint="#4C58AF"
             android:drawableTop="@drawable/baseline_auto_stories_24"
             android:drawablePadding="10dp"
             android:drawableTint="@color/white"
@@ -41,7 +41,7 @@
             android:id="@+id/btnPerfil"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:backgroundTint="#1A31BC"
+            android:backgroundTint="#4C58AF"
             android:drawableTop="@drawable/user_icon"
             android:drawablePadding="10dp"
             android:drawableTint="@color/white"
@@ -53,7 +53,7 @@
             android:id="@+id/btnLogout"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:backgroundTint="#1A31BC"
+            android:backgroundTint="#4C58AF"
             android:drawableTop="@drawable/logout"
             android:drawableTint="@color/white"
             android:drawablePadding="10sp"
@@ -97,10 +97,10 @@
         <Button
             android:id="@+id/btnFichar"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:text="REGISTRAR FICHAJE"
             android:textSize="18sp"
-            android:backgroundTint="#4CAF50"/>
+            android:backgroundTint="#4C58AF"/>
 
     </LinearLayout>
 </LinearLayout>

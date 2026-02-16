@@ -80,6 +80,7 @@ class HistoryActivity : AppCompatActivity() {
                     MaterialDatePicker.todayInUtcMilliseconds()
                 )
             )
+            .setTheme(R.style.TemaCalendarioSeguro)
             .build()
 
         // Función para abrir el calendario al tocar CUALQUIERA de los dos campos
