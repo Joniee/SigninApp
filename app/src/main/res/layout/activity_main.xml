@@ -3,17 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="20dp">
 
     <ImageView
-        android:layout_width="500px"
-        android:layout_height="500px"
-        android:layout_marginBottom="50px"
+        android:layout_width="300px"
+        android:layout_height="300px"
+        android:layout_marginBottom="30px"
+        android:layout_gravity="center"
         app:srcCompat="@mipmap/logo_sat_sin_fondo" />
 
     <TextView
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -46,4 +47,13 @@
         android:backgroundTint="#4C58AF"
         android:text="Entrar" />
 
+    <TextView
+        android:layout_gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="32dp"
+        android:text="v.1.1"
+        android:textSize="10sp"
+        android:textStyle="bold" />
 </LinearLayout>

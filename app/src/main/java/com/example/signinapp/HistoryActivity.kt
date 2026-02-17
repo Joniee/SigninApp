@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.signinapp.models.*
 import com.example.signinapp.api.RetrofitClient
+import com.example.signinapp.utils.DailyReport
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
@@ -144,12 +145,13 @@ class HistoryActivity : AppCompatActivity() {
 
                 val request = HistoryRequest(user.id, apiStartDate, apiEndDate)
                 val response = RetrofitClient.apiService.getHistory(request)
-                val adapter = HistoryAdapter()
 
                 if (response.isSuccessful && response.body() != null) {
                     val rawLogs = response.body()?.results!!
 
-                    val reports = adapter.updateData(rawLogs)
+                    val reports = processHistoryData(rawLogs)
+
+                    val adapter = HistoryAdapter(reports)
 
                     recyclerView.layoutManager = LinearLayoutManager(this@HistoryActivity)
                     recyclerView.adapter = adapter
@@ -181,6 +183,20 @@ class HistoryActivity : AppCompatActivity() {
         } catch (e: Exception) {
             uiDate // Fallback
         }
+    }
+
+    private fun processHistoryData(logs: List<AccessLog>): List<DailyReport> {
+        val grouped = logs.groupBy { it.date }
+
+        val reports = grouped.map { (fecha, logsDelDia) ->
+            DailyReport(
+                date = fecha,
+                // 2. Ordenamos por tu variable 'time' para que salgan (08:00, 10:00, 14:00...)
+                events = logsDelDia.sortedBy { it.time }
+            )
+        }
+
+        return reports.sortedByDescending { it.date }
     }
 
 }
