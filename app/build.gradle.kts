@@ -58,5 +58,8 @@ dependencies {
     // Diseños de la interfaz de usuario (Material Design)
     implementation("com.google.android.material:material:1.9.0")
 
+    // GPS
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+
 
 }

@@ -36,46 +36,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tipo: "
-                android:textStyle="bold"
-                android:textColor="#757575"/>
-
-            <TextView
-                android:id="@+id/tvType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Entrada"
-                android:textStyle="bold"
-                android:textColor="#388E3C"
-                android:textSize="16sp"
-                android:layout_marginRight="20dp"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hour: "
-                android:textStyle="bold"
-                android:textColor="#757575"/>
-
-            <TextView
-                android:id="@+id/tvTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="8h 30m"
-                android:textStyle="bold"
-                android:textColor="#388E3C"
-                android:textSize="16sp"/>
-        </LinearLayout>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
